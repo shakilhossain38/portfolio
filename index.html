@@ -101,19 +101,33 @@
     }
 
     /* Projects */
-    .project {
-      background: linear-gradient(145deg, #e0f2fe, #ffffff);
-      border: 1px solid #d1d5db;
-      border-radius: 14px;
-      padding: 1rem 1.5rem;
-      margin-bottom: 1rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.07);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      user-select: none;
-    }
+.project {
+  background: linear-gradient(145deg, #e0f2fe, #ffffff);
+  border: 1px solid #d1d5db;
+  border-radius: 14px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+}
+
+.project-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1e40af;
+  text-decoration: none;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
     .project:hover {
       transform: translateY(-6px);
       box-shadow: 0 8px 20px rgba(0,0,0,0.12);
@@ -252,22 +266,82 @@
     
     </section>
 
-    <section class="section" aria-labelledby="projects-title">
-      <h2 id="projects-title" class="section-title">Projects</h2>
-      
-     <div class="project"><h3><a href="https://play.google.com/store/apps/details?id=com.quranicverse.alquran" target="_blank">Al Quran</a></h3><a href="https://play.google.com/store/apps/details?id=com.quranicverse.alquran" target="_blank"><i class="fab fa-google-play"></i></a></div>
-      <div class="project"><h3><a href="https://play.google.com/store/apps/details?id=com.martechhouse.salahbd" target="_blank">Muslim Minds</a></h3><a href="https://play.google.com/store/apps/details?id=com.martechhouse.salahbd" target="_blank"><i class="fab fa-google-play"></i></a></div>
-      <div class="project"><h3><a href="https://play.google.com/store/apps/details?id=com.inflack.coxs_bazar_app" target="_blank">Vromonika</a></h3><a href="https://play.google.com/store/apps/details?id=com.inflack.coxs_bazar_app" target="_blank"><i class="fab fa-google-play"></i></a></div>
-      <div class="project"><h3><a href="https://play.google.com/store/apps/details?id=com.wpwax.directorist" target="_blank">Directorist</a></h3><a href="https://play.google.com/store/apps/details?id=com.wpwax.directorist" target="_blank"><i class="fab fa-google-play"></i></a></div>
-      <div class="project"><h3><a href="https://play.google.com/store/apps/details?id=com.mepo.user" target="_blank">Mepo</a></h3><a href="https://play.google.com/store/apps/details?id=com.mepo.user" target="_blank"><i class="fab fa-google-play"></i></a></div>
-      <div class="project"><h3><a href="https://play.google.com/store/apps/details?id=com.amarischool.course" target="_blank">Amar iSchool</a></h3><a href="https://play.google.com/store/apps/details?id=com.amarischool.course" target="_blank"><i class="fab fa-google-play"></i></a></div>
-      <div class="project"><h3><a href="https://play.google.com/store/apps/details?id=com.pioneeralpha.betterhalf" target="_blank">Smart Ghotok</a></h3><a href="https://play.google.com/store/apps/details?id=com.pioneeralpha.betterhalf" target="_blank"><i class="fab fa-google-play"></i></a></div>
-      <div class="project"><h3><a href="https://play.google.com/store/apps/details?id=com.smartsohay.education" target="_blank">Smart Sohay</a></h3><a href="https://play.google.com/store/apps/details?id=com.smartsohay.education" target="_blank"><i class="fab fa-google-play"></i></a></div>
-      <div class="project"><h3><a href="https://apkpure.net/jobxprss/com.ishraak.jobxprss" target="_blank">JobXprss</a></h3><a href="https://apkpure.net/jobxprss/com.ishraak.jobxprss" target="_blank"><i class="fas fa-file-archive"></i></a></div>
-      <div class="project"><h3><a href="https://apkpure.net/skillxprss/com.ishraak.skillxprss" target="_blank">SkillXprss</a></h3><a href="https://apkpure.net/skillxprss/com.ishraak.skillxprss" target="_blank"><i class="fas fa-file-archive"></i></a></div>
-      <div class="project"><h3><a href="#" target="_blank">MyHealthBD</a></h3></div>
-      <div class="project"><h3><a href="https://play.google.com/store/apps/details?id=com.labookempl.app" target="_blank">Labook</a></h3><a href="https://play.google.com/store/apps/details?id=com.labookempl.app" target="_blank"><i class="fab fa-google-play"></i></a></div>
-    </section>
+<section class="section" aria-labelledby="projects-title">
+  <h2 id="projects-title" class="section-title">Projects</h2>
+
+  <div class="project">
+    <a href="https://play.google.com/store/apps/details?id=com.quranicverse.alquran" target="_blank" class="project-link">
+      <span>Al Quran</span><i class="fab fa-google-play"></i>
+    </a>
+  </div>
+
+  <div class="project">
+    <a href="https://play.google.com/store/apps/details?id=com.martechhouse.salahbd" target="_blank" class="project-link">
+      <span>Muslim Minds</span><i class="fab fa-google-play"></i>
+    </a>
+  </div>
+
+  <div class="project">
+    <a href="https://play.google.com/store/apps/details?id=com.inflack.coxs_bazar_app" target="_blank" class="project-link">
+      <span>Vromonika</span><i class="fab fa-google-play"></i>
+    </a>
+  </div>
+
+  <div class="project">
+    <a href="https://play.google.com/store/apps/details?id=com.wpwax.directorist" target="_blank" class="project-link">
+      <span>Directorist</span><i class="fab fa-google-play"></i>
+    </a>
+  </div>
+
+  <div class="project">
+    <a href="https://play.google.com/store/apps/details?id=com.mepo.user" target="_blank" class="project-link">
+      <span>Mepo</span><i class="fab fa-google-play"></i>
+    </a>
+  </div>
+
+  <div class="project">
+    <a href="https://play.google.com/store/apps/details?id=com.amarischool.course" target="_blank" class="project-link">
+      <span>Amar iSchool</span><i class="fab fa-google-play"></i>
+    </a>
+  </div>
+
+  <div class="project">
+    <a href="https://play.google.com/store/apps/details?id=com.pioneeralpha.betterhalf" target="_blank" class="project-link">
+      <span>Smart Ghotok</span><i class="fab fa-google-play"></i>
+    </a>
+  </div>
+
+  <div class="project">
+    <a href="https://play.google.com/store/apps/details?id=com.smartsohay.education" target="_blank" class="project-link">
+      <span>Smart Sohay</span><i class="fab fa-google-play"></i>
+    </a>
+  </div>
+
+  <div class="project">
+    <a href="https://apkpure.net/jobxprss/com.ishraak.jobxprss" target="_blank" class="project-link">
+      <span>JobXprss</span><i class="fas fa-file-archive"></i>
+    </a>
+  </div>
+
+  <div class="project">
+    <a href="https://apkpure.net/skillxprss/com.ishraak.skillxprss" target="_blank" class="project-link">
+      <span>SkillXprss</span><i class="fas fa-file-archive"></i>
+    </a>
+  </div>
+
+  <div class="project">
+    <span class="project-link">
+      <span>MyHealthBD</span>
+    </span>
+  </div>
+
+  <div class="project">
+    <a href="https://play.google.com/store/apps/details?id=com.labookempl.app" target="_blank" class="project-link">
+      <span>Labook</span><i class="fab fa-google-play"></i>
+    </a>
+  </div>
+</section>
+
 
     <section class="section" aria-labelledby="skills-title">
       <h2 id="skills-title" class="section-title">Skills</h2>
