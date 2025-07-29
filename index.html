@@ -1,465 +1,524 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Flutter Developer | Md. Shakil Hossen</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
-  <style>
-    /* Reset and base */
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #f9fafb;
-      color: #1f2937;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    /* === New Header Styles === */
-    header {
-      background: #eef4f8; /* Light background for the new header */
-      padding: 5rem 1.5rem 4rem;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
-      display: flex;
-      justify-content: center;
-    }
-    .header-inner {
-      max-width: 960px;
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 3rem;
-    }
-    .profile-photo-container {
-      flex-shrink: 0;
-      width: 250px;
-      height: 250px;
-      border-radius: 50%;
-      overflow: hidden;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-      background-color: #d1d5db;
-      border: 3px solid rgba(0,0,0,0.1);
-      user-select: none;
-    }
-    .profile-photo-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center; /* Ensures the image is centered within the frame */
-      display: block;
-    }
-    .intro-group {
-      flex: 1;
-      min-width: 280px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      color: #1f2937;
-      user-select: text;
-    }
-    .intro-group .greeting {
-      font-size: 1.8rem;
-      font-weight: 400;
-      margin: 0 0 0.2rem;
-      color: #4b5563;
-    }
-    .intro-group h1 {
-      font-size: 3.8rem;
-      font-weight: 700;
-      margin: 0 0 0.4rem;
-      line-height: 1.1;
-    }
-    .highlight-name {
-      color: #3b82f6;
-    }
-    .intro-group .main-role {
-      font-size: 2.2rem;
-      font-weight: 600;
-      margin: 0 0 1.5rem;
-    }
-    .social-icon-links {
-      display: flex;
-      gap: 1.3rem;
-    }
-    .social-icon-links a {
-      color: #3b82f6;
-      font-size: 2rem;
-      transition: color 0.3s ease, transform 0.2s ease;
-      text-shadow: none;
-      user-select: none;
-    }
-    .social-icon-links a:hover,
-    .social-icon-links a:focus {
-      color: #2563eb;
-      transform: translateY(-3px);
-      outline: none;
-    }
-    /* === End New Header Styles === */
-
-
-    /* Container */
-    .container {
-      max-width: 960px;
-      margin: 3rem auto 5rem;
-      padding: 0 1rem;
-    }
-
-    /* Section titles */
-    h2.section-title {
-      font-size: 2.25rem;
-      color: #0f172a;
-      margin-bottom: 1.5rem;
-      border-bottom: 3px solid #3b82f6;
-      padding-bottom: 0.5rem;
-      font-weight: 700;
-      user-select: none;
-    }
-    .section {
-      margin-bottom: 4rem;
-    }
-
-    /* Projects */
-    .project {
-      background: linear-gradient(145deg, #e0f2fe, #ffffff);
-      border: 1px solid #d1d5db;
-      border-radius: 14px;
-      padding: 1rem 1.5rem;
-      margin-bottom: 1rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.07);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      display: flex;
-      flex-wrap: nowrap;
-      align-items: center;
-      justify-content: space-between;
-      user-select: none;
-    }
-    .project:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-    }
-    .project h3 {
-      flex: 1;
-      margin: 0;
-      font-size: 1.2rem;
-      font-weight: 600;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      min-width: 0;
-      color: #1e40af;
-    }
-
-    .project a {
-      flex-shrink: 0;
-    }
-    .project a.project-link {
-      color: #0ea5e9;
-      font-weight: 700;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 1.25rem;
-    }
-    .project a.project-link:hover,
-    .project a.project-link:focus {
-      color: #2563eb;
-      outline: none;
-    }
-
-    /* About & Experience */
-section p, section ul {
-  font-size: 1.1rem;
-  max-width: 700px;
-  margin: 0; /* changed from 0 auto */
-  user-select: text;
-  text-align: left; /* ensure left alignment */
-}
-
-    section ul {
-      padding-left: 1.5rem;
-      list-style: disc;
-    }
-    section ul li {
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-    }
-
-    /* Skills */
-    ul.skills-list {
-      list-style: none;
-      padding: 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.85rem;
-      justify-content: center;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    ul.skills-list li {
-      background: #3b82f6;
-      color: white;
-      padding: 0.5rem 1.3rem;
-      border-radius: 24px;
-      font-weight: 600;
-      font-size: 1rem;
-      box-shadow: 0 2px 8px rgba(59,130,246,0.5);
-      user-select: text;
-      transition: background-color 0.3s ease;
-    }
-    ul.skills-list li:hover {
-      background: #2563eb;
-      cursor: default;
-    }
-
-    /* Contact Section */
-    .contact-section {
-      max-width: 550px;
-      margin: 50px auto;
-      background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-      border-radius: 12px;
-      padding: 32px 36px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-      font-family: 'Inter', sans-serif;
-      color: #1f2937;
-    }
-
-    /* Ensure section-title for contact is consistent */
-    .contact-section .section-title {
-        font-weight: 600;
-        font-size: 2rem;
-        margin-bottom: 24px;
-        border-bottom: 3px solid #2563eb;
-        padding-bottom: 8px;
-        letter-spacing: 0.03em;
-        color: #0f172a;
-    }
-
-    .contact-info ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .contact-info li {
-      display: flex;
-      align-items: center;
-      margin-bottom: 18px;
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Flutter Developer | Md. Shakil Hossen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+          rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+          rel="stylesheet"/>
+    <style>
+        /* Reset and base */
+        *, *::before, *::after {
+          box-sizing: border-box;
+        }
+        body {
+          margin: 0;
+          font-family: 'Inter', sans-serif;
+          background: #f9fafb;
+          color: #1f2937;
+          line-height: 1.6;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+    
+        /* === New Header Styles === */
+        header {
+          background: #eef4f8; /* Light background for the new header */
+          padding: 5rem 1.5rem 4rem;
+          box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+          display: flex;
+          justify-content: center;
+        }
+        .header-inner {
+          max-width: 960px;
+          width: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 3rem;
+        }
+        .profile-photo-container {
+          flex-shrink: 0;
+          width: 250px;
+          height: 250px;
+          border-radius: 50%;
+          overflow: hidden;
+          box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+          background-color: #d1d5db;
+          border: 3px solid rgba(0,0,0,0.1);
+          user-select: none;
+        }
+        .profile-photo-container img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center; /* Ensures the image is centered within the frame */
+          display: block;
+        }
+        .intro-group {
+          flex: 1;
+          min-width: 280px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          color: #1f2937;
+          user-select: text;
+        }
+        .intro-group .greeting {
+          font-size: 1.8rem;
+          font-weight: 400;
+          margin: 0 0 0.2rem;
+          color: #4b5563;
+        }
+        .intro-group h1 {
+          font-size: 3.8rem;
+          font-weight: 700;
+          margin: 0 0 0.4rem;
+          line-height: 1.1;
+        }
+        .highlight-name {
+          color: #3b82f6;
+        }
+        .intro-group .main-role {
+          font-size: 2.2rem;
+          font-weight: 600;
+          margin: 0 0 1.5rem;
+        }
+        .social-icon-links {
+          display: flex;
+          gap: 1.3rem;
+        }
+        .social-icon-links a {
+          color: #3b82f6;
+          font-size: 2rem;
+          transition: color 0.3s ease, transform 0.2s ease;
+          text-shadow: none;
+          user-select: none;
+        }
+        .social-icon-links a:hover,
+        .social-icon-links a:focus {
+          color: #2563eb;
+          transform: translateY(-3px);
+          outline: none;
+        }
+        /* === End New Header Styles === */
+    
+    
+        /* Container */
+        .container {
+          max-width: 960px;
+          margin: 3rem auto 5rem;
+          padding: 0 1rem;
+        }
+    
+        /* Section titles */
+        h2.section-title {
+          font-size: 2.25rem;
+          color: #0f172a;
+          margin-bottom: 1.5rem;
+          border-bottom: 3px solid #3b82f6;
+          padding-bottom: 0.5rem;
+          font-weight: 700;
+          user-select: none;
+        }
+        .section {
+          margin-bottom: 4rem;
+        }
+    
+        /* Projects */
+        .project {
+          background: linear-gradient(145deg, #e0f2fe, #ffffff);
+          border: 1px solid #d1d5db;
+          border-radius: 14px;
+          padding: 1rem 1.5rem;
+          margin-bottom: 1rem;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.07);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          display: flex;
+          flex-wrap: nowrap;
+          align-items: center;
+          justify-content: space-between;
+          user-select: none;
+        }
+        .project:hover {
+          transform: translateY(-6px);
+          box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+        .project h3 {
+          flex: 1;
+          margin: 0;
+          font-size: 1.2rem;
+          font-weight: 600;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          min-width: 0;
+          color: #1e40af;
+        }
+    
+        .project a {
+          flex-shrink: 0;
+        }
+        .project a.project-link {
+          color: #0ea5e9;
+          font-weight: 700;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+          font-size: 1.25rem;
+        }
+        .project a.project-link:hover,
+        .project a.project-link:focus {
+          color: #2563eb;
+          outline: none;
+        }
+    
+        /* About & Experience */
+    
+    
+        section p, section ul {
       font-size: 1.1rem;
+      width: 100%;    
+      max-width: none; 
+      margin: 0 0 1rem 0;
+      text-align: left;
     }
-
-    .contact-info li a {
-      color: #2563eb;
-      text-decoration: none;
-      transition: color 0.25s ease;
-      word-break: break-word;
-    }
-
-    .contact-info li a:hover,
-    .contact-info li a:focus {
-      color: #1d4ed8;
-      text-decoration: underline;
-    }
-
-    /* Styles for Font Awesome icons in the contact list */
-    .contact-info li .icon {
-      margin-right: 14px;
-      flex-shrink: 0;
-      font-size: 1.3rem; /* Adjust size to match previous visual scale */
-      color: #2563eb; /* Apply the theme color */
-      width: 20px; /* Maintain consistent spacing with width */
-      text-align: center; /* Center the icon within its space */
-    }
-
-    /* Remove previous background-image definitions */
-    /*
-    .email-icon { background-image: url('data:image/svg+xml;utf8,...'); }
-    .phone-icon { background-image: url('data:image/svg+xml;utf8,...'); }
-    .location-icon { background-image: url('data:image/svg+xml;utf8,...'); }
-    .linkedin-icon { background-image: url('data:image/svg+xml;utf8,...'); }
-    .github-icon { background-image: url('data:image/svg+xml;utf8,...'); }
-    .whatsapp-icon { background-image: url('data:image/svg+xml;utf8,...'); }
-    .telegram-icon { background-image: url('data:image/svg+xml;utf8,...'); }
-    */
-
-    /* Footer */
-    footer {
-      background: #f1f5f9;
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.95rem;
-      color: #6b7280;
-      user-select: none;
-      border-top: 1px solid #e5e7eb;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .header-inner {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-      .intro-group {
-        align-items: center;
-      }
-      .intro-group h1 {
-        font-size: 3rem;
-      }
-      .intro-group .main-role {
-        font-size: 1.5rem;
-      }
-      .social-icon-links {
-        justify-content: center;
-      }
-      .profile-photo-container {
-        width: 180px;
-        height: 180px;
-        margin-bottom: 1.5rem;
-      }
-      h2.section-title {
-        font-size: 1.75rem;
-      }
-      .project {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .project a.project-link {
-        margin-top: 0.5rem;
-      }
-      ul.skills-list {
-        justify-content: flex-start;
-      }
-      .contact-section {
-        padding: 24px;
-      }
-    }
-  </style>
+    
+        section ul {
+          padding-left: 1.5rem;
+          list-style: disc;
+        }
+        section ul li {
+          margin-bottom: 0.5rem;
+          font-weight: 500;
+        }
+    
+        /* Skills */
+        ul.skills-list {
+          list-style: none;
+          padding: 0;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.85rem;
+          justify-content: center;
+          max-width: 700px;
+          margin: 0 auto;
+        }
+        ul.skills-list li {
+          background: #3b82f6;
+          color: white;
+          padding: 0.5rem 1.3rem;
+          border-radius: 24px;
+          font-weight: 600;
+          font-size: 1rem;
+          box-shadow: 0 2px 8px rgba(59,130,246,0.5);
+          user-select: text;
+          transition: background-color 0.3s ease;
+        }
+        ul.skills-list li:hover {
+          background: #2563eb;
+          cursor: default;
+        }
+    
+        /* Contact Section */
+        .contact-section {
+          max-width: 550px;
+          margin: 50px auto;
+          background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+          border-radius: 12px;
+          padding: 32px 36px;
+          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+          font-family: 'Inter', sans-serif;
+          color: #1f2937;
+        }
+    
+        /* Ensure section-title for contact is consistent */
+        .contact-section .section-title {
+            font-weight: 600;
+            font-size: 2rem;
+            margin-bottom: 24px;
+            border-bottom: 3px solid #2563eb;
+            padding-bottom: 8px;
+            letter-spacing: 0.03em;
+            color: #0f172a;
+        }
+    
+        .contact-info ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+    
+        .contact-info li {
+          display: flex;
+          align-items: center;
+          margin-bottom: 18px;
+          font-size: 1.1rem;
+        }
+    
+        .contact-info li a {
+          color: #2563eb;
+          text-decoration: none;
+          transition: color 0.25s ease;
+          word-break: break-word;
+        }
+    
+        .contact-info li a:hover,
+        .contact-info li a:focus {
+          color: #1d4ed8;
+          text-decoration: underline;
+        }
+    
+        /* Styles for Font Awesome icons in the contact list */
+        .contact-info li .icon {
+          margin-right: 14px;
+          flex-shrink: 0;
+          font-size: 1.3rem; /* Adjust size to match previous visual scale */
+          color: #2563eb; /* Apply the theme color */
+          width: 20px; /* Maintain consistent spacing with width */
+          text-align: center; /* Center the icon within its space */
+        }
+    
+        /* Remove previous background-image definitions */
+        /*
+        .email-icon { background-image: url('data:image/svg+xml;utf8,...'); }
+        .phone-icon { background-image: url('data:image/svg+xml;utf8,...'); }
+        .location-icon { background-image: url('data:image/svg+xml;utf8,...'); }
+        .linkedin-icon { background-image: url('data:image/svg+xml;utf8,...'); }
+        .github-icon { background-image: url('data:image/svg+xml;utf8,...'); }
+        .whatsapp-icon { background-image: url('data:image/svg+xml;utf8,...'); }
+        .telegram-icon { background-image: url('data:image/svg+xml;utf8,...'); }
+        */
+    
+        /* Footer */
+        footer {
+          background: #f1f5f9;
+          text-align: center;
+          padding: 2rem;
+          font-size: 0.95rem;
+          color: #6b7280;
+          user-select: none;
+          border-top: 1px solid #e5e7eb;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.5rem;
+        }
+    
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+          .header-inner {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+          }
+          .intro-group {
+            align-items: center;
+          }
+          .intro-group h1 {
+            font-size: 3rem;
+          }
+          .intro-group .main-role {
+            font-size: 1.5rem;
+          }
+          .social-icon-links {
+            justify-content: center;
+          }
+          .profile-photo-container {
+            width: 180px;
+            height: 180px;
+            margin-bottom: 1.5rem;
+          }
+          h2.section-title {
+            font-size: 1.75rem;
+          }
+          .project {
+            flex-direction: column;
+            align-items: flex-start;
+          }
+          .project a.project-link {
+            margin-top: 0.5rem;
+          }
+          ul.skills-list {
+            justify-content: flex-start;
+          }
+          .contact-section {
+            padding: 24px;
+          }
+        }
+    </style>
 </head>
 <body>
-  <header>
+<header>
     <div class="header-inner">
-      <div class="profile-photo-container" aria-label="Profile photo of Md. Shakil Hossen">
-        <img src="https://raw.githubusercontent.com/shakilhossain38/portfolio/master/photo.png" alt="Md. Shakil Hossen" />
-      </div>
-      <div class="intro-group">
-        <p class="greeting">Hello 👋 I'm</p>
-        <h1><span class="highlight-name">Md. Shakil Hossen</span></h1>
-        <p class="main-role">Flutter Developer</p>
-        <nav class="social-icon-links" aria-label="Social media links">
-          <a href="https://github.com/shakilhossen" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-            <i class="fab fa-github"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/shakilhossen/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a href="https://wa.me/8801713000774" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-            <i class="fab fa-whatsapp"></i>
-          </a>
-          <a href="https://t.me/shakilhossen" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
-            <i class="fab fa-telegram"></i>
-          </a>
-        </nav>
-      </div>
+        <div class="profile-photo-container" aria-label="Profile photo of Md. Shakil Hossen">
+            <img src="https://raw.githubusercontent.com/shakilhossain38/portfolio/master/photo.png"
+                 alt="Md. Shakil Hossen"/>
+        </div>
+        <div class="intro-group">
+            <p class="greeting">Hello 👋 I'm</p>
+            <h1><span class="highlight-name">Md. Shakil Hossen</span></h1>
+            <p class="main-role">Flutter Developer</p>
+            <nav class="social-icon-links" aria-label="Social media links">
+                <a href="https://github.com/shakilhossen" target="_blank" rel="noopener noreferrer"
+                   aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/shakilhossen/" target="_blank"
+                   rel="noopener noreferrer" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://wa.me/8801713000774" target="_blank" rel="noopener noreferrer"
+                   aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://t.me/shakilhossen" target="_blank" rel="noopener noreferrer"
+                   aria-label="Telegram">
+                    <i class="fab fa-telegram"></i>
+                </a>
+            </nav>
+        </div>
     </div>
-  </header>
+</header>
 
-  <main class="container" role="main">
+<main class="container" role="main">
     <section class="section" aria-labelledby="about-me-title">
-      <h2 id="about-me-title" class="section-title">About Me</h2>
-      <p>I am a dedicated Flutter developer specializing in building scalable, responsive, and user-centric mobile applications. With a strong command of state management, API integration, and modern development techniques, I focus on delivering clean, maintainable code and seamless user experiences. I continuously seek to grow my expertise and stay current with evolving mobile technologies.</p>
+        <h2 id="about-me-title" class="section-title">About Me</h2>
+        <p>I am a dedicated Flutter developer specializing in building scalable, responsive, and
+            user-centric mobile applications. With a strong command of state management, API
+            integration, and modern development techniques, I focus on delivering clean,
+            maintainable code and seamless user experiences. I continuously seek to grow my
+            expertise and stay current with evolving mobile technologies.</p>
     </section>
 
     <section class="section" aria-labelledby="experience-title">
-      <h2 id="experience-title" class="section-title">Experience</h2>
-      <ul>
-        <li><strong>SovWare</strong> – August 2022 to Present</li>
-        <li><strong>Ishraak Solutions Limited</strong> – Dec 2020 to July 31, 2022</li>
-      </ul>
+        <h2 id="experience-title" class="section-title">Experience</h2>
+        <ul>
+            <li><strong>SovWare</strong> – August 2022 to Present</li>
+            <li><strong>Ishraak Solutions Limited</strong> – Dec 2020 to July 31, 2022</li>
+        </ul>
     </section>
 
     <section class="section" aria-labelledby="projects-title">
-      <h2 id="projects-title" class="section-title">Projects</h2>
-      <div class="project"><h3><a href="https://play.google.com/store/apps/details?id=com.quranicverse.alquran" target="_blank">Al Quran</a></h3><a href="https://play.google.com/store/apps/details?id=com.quranicverse.alquran" target="_blank" class="project-link"><i class="fab fa-google-play"></i></a></div>
-      <div class="project"><h3><a href="https://play.google.com/store/apps/details?id=com.martechhouse.salahbd" target="_blank">Muslim Minds</a></h3><a href="https://play.google.com/store/apps/details?id=com.martechhouse.salahbd" target="_blank" class="project-link"><i class="fab fa-google-play"></i></a></div>
-      <div class="project"><h3><a href="https://play.google.com/store/apps/details?id=com.inflack.coxs_bazar_app" target="_blank">Vromonika</a></h3><a href="https://play.google.com/store/apps/details?id=com.inflack.coxs_bazar_app" target="_blank" class="project-link"><i class="fab fa-google-play"></i></a></div>
-      <div class="project"><h3><a href="https://play.google.com/store/apps/details?id=com.wpwax.directorist" target="_blank">Directorist</a></h3><a href="https://play.google.com/store/apps/details?id=com.wpwax.directorist" target="_blank" class="project-link"><i class="fab fa-google-play"></i></a></div>
-      <div class="project"><h3><a href="https://play.google.com/store/apps/details?id=com.mepo.user" target="_blank">Mepo</a></h3><a href="https://play.google.com/store/apps/details?id=com.mepo.user" target="_blank" class="project-link"><i class="fab fa-google-play"></i></a></div>
-      <div class="project"><h3><a href="https://play.google.com/store/apps/details?id=com.amarischool.course" target="_blank">Amar iSchool</a></h3><a href="https://play.google.com/store/apps/details?id=com.amarischool.course" target="_blank" class="project-link"><i class="fab fa-google-play"></i></a></div>
-      <div class="project"><h3><a href="https://play.google.com/store/apps/details?id=com.pioneeralpha.betterhalf" target="_blank">Smart Ghotok</a></h3><a href="https://play.google.com/store/apps/details?id=com.pioneeralpha.betterhalf" target="_blank" class="project-link"><i class="fab fa-google-play"></i></a></div>
-      <div class="project"><h3><a href="https://play.google.com/store/apps/details?id=com.smartsohay.education" target="_blank">Smart Sohay</a></h3><a href="https://play.google.com/store/apps/details?id=com.smartsohay.education" target="_blank" class="project-link"><i class="fab fa-google-play"></i></a></div>
-      <div class="project"><h3><a href="https://apkpure.net/jobxprss/com.ishraak.jobxprss" target="_blank">JobXprss</a></h3><a href="https://apkpure.net/jobxprss/com.ishraak.jobxprss" target="_blank" class="project-link"><i class="fas fa-file-archive"></i></a></div>
-      <div class="project"><h3><a href="https://apkpure.net/skillxprss/com.ishraak.skillxprss" target="_blank">SkillXprss</a></h3><a href="https://apkpure.net/skillxprss/com.ishraak.skillxprss" target="_blank" class="project-link"><i class="fas fa-file-archive"></i></a></div>
-      <div class="project"><h3><a href="#" target="_blank">MyHealthBD</a></h3></div>
-      <div class="project"><h3><a href="https://play.google.com/store/apps/details?id=com.labookempl.app" target="_blank">Labook</a></h3><a href="https://play.google.com/store/apps/details?id=com.labookempl.app" target="_blank" class="project-link"><i class="fab fa-google-play"></i></a></div>
+        <h2 id="projects-title" class="section-title">Projects</h2>
+        <div class="project"><h3><a
+                href="https://play.google.com/store/apps/details?id=com.quranicverse.alquran"
+                target="_blank">Al Quran</a></h3><a
+                href="https://play.google.com/store/apps/details?id=com.quranicverse.alquran"
+                target="_blank" class="project-link"><i class="fab fa-google-play"></i></a></div>
+        <div class="project"><h3><a
+                href="https://play.google.com/store/apps/details?id=com.martechhouse.salahbd"
+                target="_blank">Muslim Minds</a></h3><a
+                href="https://play.google.com/store/apps/details?id=com.martechhouse.salahbd"
+                target="_blank" class="project-link"><i class="fab fa-google-play"></i></a></div>
+        <div class="project"><h3><a
+                href="https://play.google.com/store/apps/details?id=com.inflack.coxs_bazar_app"
+                target="_blank">Vromonika</a></h3><a
+                href="https://play.google.com/store/apps/details?id=com.inflack.coxs_bazar_app"
+                target="_blank" class="project-link"><i class="fab fa-google-play"></i></a></div>
+        <div class="project"><h3><a
+                href="https://play.google.com/store/apps/details?id=com.wpwax.directorist"
+                target="_blank">Directorist</a></h3><a
+                href="https://play.google.com/store/apps/details?id=com.wpwax.directorist"
+                target="_blank" class="project-link"><i class="fab fa-google-play"></i></a></div>
+        <div class="project"><h3><a
+                href="https://play.google.com/store/apps/details?id=com.mepo.user" target="_blank">Mepo</a>
+        </h3><a href="https://play.google.com/store/apps/details?id=com.mepo.user" target="_blank"
+                class="project-link"><i class="fab fa-google-play"></i></a></div>
+        <div class="project"><h3><a
+                href="https://play.google.com/store/apps/details?id=com.amarischool.course"
+                target="_blank">Amar iSchool</a></h3><a
+                href="https://play.google.com/store/apps/details?id=com.amarischool.course"
+                target="_blank" class="project-link"><i class="fab fa-google-play"></i></a></div>
+        <div class="project"><h3><a
+                href="https://play.google.com/store/apps/details?id=com.pioneeralpha.betterhalf"
+                target="_blank">Smart Ghotok</a></h3><a
+                href="https://play.google.com/store/apps/details?id=com.pioneeralpha.betterhalf"
+                target="_blank" class="project-link"><i class="fab fa-google-play"></i></a></div>
+        <div class="project"><h3><a
+                href="https://play.google.com/store/apps/details?id=com.smartsohay.education"
+                target="_blank">Smart Sohay</a></h3><a
+                href="https://play.google.com/store/apps/details?id=com.smartsohay.education"
+                target="_blank" class="project-link"><i class="fab fa-google-play"></i></a></div>
+        <div class="project"><h3><a href="https://apkpure.net/jobxprss/com.ishraak.jobxprss"
+                                    target="_blank">JobXprss</a></h3><a
+                href="https://apkpure.net/jobxprss/com.ishraak.jobxprss" target="_blank"
+                class="project-link"><i class="fas fa-file-archive"></i></a></div>
+        <div class="project"><h3><a href="https://apkpure.net/skillxprss/com.ishraak.skillxprss"
+                                    target="_blank">SkillXprss</a></h3><a
+                href="https://apkpure.net/skillxprss/com.ishraak.skillxprss" target="_blank"
+                class="project-link"><i class="fas fa-file-archive"></i></a></div>
+        <div class="project"><h3><a href="#" target="_blank">MyHealthBD</a></h3></div>
+        <div class="project"><h3><a
+                href="https://play.google.com/store/apps/details?id=com.labookempl.app"
+                target="_blank">Labook</a></h3><a
+                href="https://play.google.com/store/apps/details?id=com.labookempl.app"
+                target="_blank" class="project-link"><i class="fab fa-google-play"></i></a></div>
     </section>
 
     <section class="section" aria-labelledby="skills-title">
-      <h2 id="skills-title" class="section-title">Skills</h2>
-      <ul class="skills-list" aria-label="Skills list">
-        <li>Dart</li>
-        <li>Flutter</li>
-        <li>Git</li>
-        <li>State Management</li>
-        <li>Bloc</li>
-        <li>GetX</li>
-        <li>Provider</li>
-        <li>API Integration</li>
-        <li>Clean Architecture</li>
-        <li>Firebase</li>
-        <li>REST API</li>
-      </ul>
+        <h2 id="skills-title" class="section-title">Skills</h2>
+        <ul class="skills-list" aria-label="Skills list">
+            <li>Dart</li>
+            <li>Flutter</li>
+            <li>Git</li>
+            <li>State Management</li>
+            <li>Bloc</li>
+            <li>GetX</li>
+            <li>Provider</li>
+            <li>API Integration</li>
+            <li>Clean Architecture</li>
+            <li>Firebase</li>
+            <li>REST API</li>
+        </ul>
     </section>
 
     <section class="section contact-section">
-      <h2 class="section-title">Contact Info</h2>
-      <div class="contact-info">
-        <ul>
-          <li>
-            <i class="fas fa-envelope icon" aria-hidden="true"></i>
-            <a href="mailto:shakilhossen38@gmail.com" aria-label="Send email to shakilhossain38@gmail.com">shakilhossain38@gmail.com</a>
-          </li>
-          <li>
-            <i class="fas fa-phone icon" aria-hidden="true"></i>
-            <a href="tel:+8801835184976">+8801835184976</a>
-          </li>
-          <li>
-            <i class="fas fa-map-marker-alt icon" aria-hidden="true"></i>Dhaka, Bangladesh
-          </li>
-          <li>
-            <i class="fab fa-linkedin icon" aria-hidden="true"></i>
-            <a href="https://www.linkedin.com/in/shakilhossain38" target="_blank" rel="noopener" aria-label="Visit LinkedIn profile">linkedin.com/in/shakilhossain38</a>
-          </li>
-          <li>
-            <i class="fab fa-github icon" aria-hidden="true"></i>
-            <a href="https://github.com/shakilhossain38" target="_blank" rel="noopener" aria-label="Visit GitHub profile">github.com/shakilhossain38</a>
-          </li>
-          <li>
-            <i class="fab fa-whatsapp icon" aria-hidden="true"></i>
-            <a href="https://wa.me/+8801835184976" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">Contact on WhatsApp</a>
-          </li>
-          <li>
-            <i class="fab fa-telegram icon" aria-hidden="true"></i>
-            <a href="https://t.me/shakilhossain38" target="_blank" rel="noopener" aria-label="Chat on Telegram">Contact on Telegram</a>
-          </li>
-        </ul>
-      </div>
+        <h2 class="section-title">Contact Info</h2>
+        <div class="contact-info">
+            <ul>
+                <li>
+                    <i class="fas fa-envelope icon" aria-hidden="true"></i>
+                    <a href="mailto:shakilhossen38@gmail.com"
+                       aria-label="Send email to shakilhossain38@gmail.com">shakilhossain38@gmail.com</a>
+                </li>
+                <li>
+                    <i class="fas fa-phone icon" aria-hidden="true"></i>
+                    <a href="tel:+8801835184976">+8801835184976</a>
+                </li>
+                <li>
+                    <i class="fas fa-map-marker-alt icon" aria-hidden="true"></i>Dhaka, Bangladesh
+                </li>
+                <li>
+                    <i class="fab fa-linkedin icon" aria-hidden="true"></i>
+                    <a href="https://www.linkedin.com/in/shakilhossain38" target="_blank"
+                       rel="noopener" aria-label="Visit LinkedIn profile">linkedin.com/in/shakilhossain38</a>
+                </li>
+                <li>
+                    <i class="fab fa-github icon" aria-hidden="true"></i>
+                    <a href="https://github.com/shakilhossain38" target="_blank" rel="noopener"
+                       aria-label="Visit GitHub profile">github.com/shakilhossain38</a>
+                </li>
+                <li>
+                    <i class="fab fa-whatsapp icon" aria-hidden="true"></i>
+                    <a href="https://wa.me/+8801835184976" target="_blank" rel="noopener"
+                       aria-label="Chat on WhatsApp">Contact on WhatsApp</a>
+                </li>
+                <li>
+                    <i class="fab fa-telegram icon" aria-hidden="true"></i>
+                    <a href="https://t.me/shakilhossain38" target="_blank" rel="noopener"
+                       aria-label="Chat on Telegram">Contact on Telegram</a>
+                </li>
+            </ul>
+        </div>
     </section>
-  </main>
+</main>
 
-  <footer>
+<footer>
     &copy; 2025 Md. Shakil Hossen &mdash; Flutter Developer Portfolio
-  </footer>
+</footer>
 </body>
 </html>
