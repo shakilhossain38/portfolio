@@ -22,7 +22,7 @@
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
         }
-    
+
         /* === New Header Styles === */
         header {
           background: #eef4f8; /* Light background for the new header */
@@ -104,29 +104,43 @@
           outline: none;
         }
         /* === End New Header Styles === */
-    
-    
+
+
         /* Container */
         .container {
           max-width: 960px;
           margin: 3rem auto 5rem;
           padding: 0 1rem;
         }
-    
+
         /* Section titles */
-        h2.section-title {
-          font-size: 2.25rem;
-          color: #0f172a;
-          margin-bottom: 1.5rem;
-          border-bottom: 3px solid #3b82f6;
-          padding-bottom: 0.5rem;
-          font-weight: 700;
-          user-select: none;
-        }
+h2.section-title {
+  display: inline-block;
+  position: relative;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 2.5rem;
+  padding-bottom: 0.5rem;
+}
+
+h2.section-title::after {
+  content: "";
+  position: absolute;
+  left: 10px; /* some left padding */
+  bottom: -10px;
+  width: calc(100% - 20px); /* underline matches text width */
+  height: 25px; /* fixed height */
+  background: no-repeat left center url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 250 30'%3E%3Cpath d='M10 20 Q 125 0, 240 20' stroke='%233b82f6' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-size: 100% 25px; /* stretch width to text, keep height fixed */
+}
+
+
+
         .section {
           margin-bottom: 4rem;
         }
-    
+
         /* Projects */
         .project {
           background: linear-gradient(145deg, #e0f2fe, #ffffff);
@@ -157,7 +171,7 @@
           min-width: 0;
           color: #1e40af;
         }
-    
+
         .project a {
           flex-shrink: 0;
         }
@@ -175,18 +189,18 @@
           color: #2563eb;
           outline: none;
         }
-    
+
         /* About & Experience */
-    
-    
+
+
         section p, section ul {
       font-size: 1.1rem;
-      width: 100%;    
-      max-width: none; 
+      width: 100%;
+      max-width: none;
       margin: 0 0 1rem 0;
       text-align: left;
     }
-    
+
         section ul {
           padding-left: 1.5rem;
           list-style: disc;
@@ -195,7 +209,7 @@
           margin-bottom: 0.5rem;
           font-weight: 500;
         }
-    
+
         /* Skills */
         ul.skills-list {
           list-style: none;
@@ -222,7 +236,7 @@
           background: #2563eb;
           cursor: default;
         }
-    
+
         /* Contact Section */
         .contact-section {
           max-width: 550px;
@@ -234,44 +248,36 @@
           font-family: 'Inter', sans-serif;
           color: #1f2937;
         }
-    
+
         /* Ensure section-title for contact is consistent */
-        .contact-section .section-title {
-            font-weight: 600;
-            font-size: 2rem;
-            margin-bottom: 24px;
-            border-bottom: 3px solid #2563eb;
-            padding-bottom: 8px;
-            letter-spacing: 0.03em;
-            color: #0f172a;
-        }
-    
+
+
         .contact-info ul {
           list-style: none;
           padding: 0;
           margin: 0;
         }
-    
+
         .contact-info li {
           display: flex;
           align-items: center;
           margin-bottom: 18px;
           font-size: 1.1rem;
         }
-    
+
         .contact-info li a {
           color: #2563eb;
           text-decoration: none;
           transition: color 0.25s ease;
           word-break: break-word;
         }
-    
+
         .contact-info li a:hover,
         .contact-info li a:focus {
           color: #1d4ed8;
           text-decoration: underline;
         }
-    
+
         /* Styles for Font Awesome icons in the contact list */
         .contact-info li .icon {
           margin-right: 14px;
@@ -281,7 +287,7 @@
           width: 20px; /* Maintain consistent spacing with width */
           text-align: center; /* Center the icon within its space */
         }
-    
+
         /* Remove previous background-image definitions */
         /*
         .email-icon { background-image: url('data:image/svg+xml;utf8,...'); }
@@ -292,7 +298,7 @@
         .whatsapp-icon { background-image: url('data:image/svg+xml;utf8,...'); }
         .telegram-icon { background-image: url('data:image/svg+xml;utf8,...'); }
         */
-    
+
         /* Footer */
         footer {
           background: #f1f5f9;
@@ -307,7 +313,7 @@
           align-items: center;
           gap: 0.5rem;
         }
-    
+
         /* Responsive adjustments */
         @media (max-width: 768px) {
           .header-inner {
